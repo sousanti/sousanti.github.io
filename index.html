@@ -1,1 +1,753 @@
-"Hello World" 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Currículum | Desarrollador de Software</title>
+    <style>
+        /* Variables y reset */
+        :root {
+            --primary-color: #6366f1;
+            --primary-light: #818cf8;
+            --secondary-color: #0f172a;
+            --accent-color: #f43f5e;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --background: #ffffff;
+            --background-alt: #f8fafc;
+            --card-bg: #ffffff;
+            --spacing-unit: 1rem;
+            --max-width: 1200px;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background);
+        }
+
+        /* Layout general */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        section {
+            padding: calc(var(--spacing-unit) * 5) 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            padding: calc(var(--spacing-unit) * 4) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: var(--spacing-unit);
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Tipografía */
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            background: linear-gradient(to right, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: var(--spacing-unit);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+        }
+
+        /* Secciones específicas */
+        .about-me {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--background-alt);
+            padding: calc(var(--spacing-unit) * 3);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-unit);
+            margin-top: var(--spacing-unit);
+        }
+
+        .skill-item {
+            background: var(--card-bg);
+            padding: calc(var(--spacing-unit) * 1.5);
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-item, .education-item, .project-card {
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            padding: calc(var(--spacing-unit) * 2);
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .experience-item:hover, .education-item:hover, .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-unit);
+        }
+
+        /* Formulario de contacto */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--background-alt);
+            padding: calc(var(--spacing-unit) * 3);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-unit);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            background: var(--background);
+            transition: var(--transition);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Social links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: calc(var(--spacing-unit) * 1.5);
+            margin: calc(var(--spacing-unit) * 2) 0;
+        }
+
+        .social-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            background: var(--background-alt);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .container { padding: 0 calc(var(--spacing-unit) * 0.5); }
+            section { padding: calc(var(--spacing-unit) * 3) 0; }
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* Botón de exportar PDF */
+        .export-pdf-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .export-pdf-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .export-pdf-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        .export-pdf-btn .pdf-icon {
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+
+        .export-pdf-btn:hover .pdf-icon {
+            transform: scale(1.1);
+        }
+
+        .export-pdf-btn:active {
+            transform: translateY(-2px) scale(0.95);
+        }
+
+        .export-pdf-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .export-pdf-btn .loading-icon {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Estilos para la versión PDF */
+        @media print {
+            .export-pdf-btn {
+                display: none;
+            }
+
+            section {
+                opacity: 1 !important;
+                transform: none !important;
+                page-break-inside: avoid;
+            }
+
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            header {
+                background: none !important;
+                color: var(--text-color) !important;
+                padding: 2rem 0 !important;
+            }
+
+            header::before {
+                display: none;
+            }
+
+            h1 {
+                background: none !important;
+                -webkit-text-fill-color: var(--text-color) !important;
+            }
+
+            .profile-img {
+                border-color: var(--text-color) !important;
+            }
+
+            .skill-item, .experience-item, .education-item, .project-card, .contact-form {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+
+            .social-links a {
+                color: var(--text-color) !important;
+                background: none !important;
+            }
+        }
+
+        /* Estilos para la información de contacto */
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-unit);
+            margin-top: var(--spacing-unit);
+        }
+
+        .contact-info-item {
+            background: var(--background-alt);
+            padding: calc(var(--spacing-unit) * 2);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info-item h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .contact-info-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-info-item ul li {
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-info-item ul li strong {
+            color: var(--secondary-color);
+            min-width: 100px;
+        }
+
+        .contact-info-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-info-item a:hover {
+            color: var(--primary-light);
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: var(--background);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            transform: translateX(5px);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Estilos para la información de contacto en experiencia laboral */
+        .contact-info {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .contact-info .contact-name {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .contact-info .contact-separator {
+            margin: 0 0.5rem;
+            color: var(--text-light);
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-light);
+        }
+
+        @media (max-width: 768px) {
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        // Intersection Observer para animaciones de scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            // Observar todas las secciones
+            document.querySelectorAll('section').forEach((section) => {
+                observer.observe(section);
+            });
+        });
+
+        // Función para exportar a PDF
+        function exportToPDF() {
+            const element = document.body;
+            const opt = {
+                margin: 1,
+                filename: 'santiago-souto-cv.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true
+                },
+                jsPDF: { 
+                    unit: 'cm', 
+                    format: 'a4', 
+                    orientation: 'portrait' 
+                }
+            };
+
+            // Mostrar indicador de carga
+            const btn = document.querySelector('.export-pdf-btn');
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `
+                <svg class="loading-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4V2C6.48 2 2 6.48 2 12H4C4 7.58 7.58 4 12 4Z"/>
+                </svg>
+            `;
+            btn.disabled = true;
+
+            // Generar PDF
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Restaurar botón
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            }).catch(error => {
+                console.error('Error al generar PDF:', error);
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="FotoPerfil.png" alt="Santiago Souto - Desarrollador de Software y Videojuegos" class="profile-img">
+            <h1>Santiago Souto</h1>
+            <p>Desarrollador de Software y Videojuegos</p>
+            <div class="keywords" aria-hidden="true" style="display: none;">
+                Desarrollador Backend, Desarrollador Frontend, Game Developer, Unity, C#, Python, JavaScript, Desarrollo de Videojuegos, Programación, Lógica, Diseño de Experiencia, Desarrollo de Software, LOM Games
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="about-me">
+            <div class="container">
+                <h2>Sobre Mí</h2>
+                <p>De nacionalidad uruguaya, apasioado por la tecnología, con interés en el backend y enfoque en el frontend a la hora de trabajar en videojuegos, donde puedo combinar lógica con diseño. Me apasionan los juegos de rol y de cartas, los mundos de fantasía y construir mecánicas que aporten profundidad y estrategia. Formo parte de LOM Games, un estudio independiente en crecimiento, donde comparto ideas y desarrollo junto a un equipo de amigos. En mi tiempo libre disfruto programar, jugar, tomar mates con mi pareja y pasar tiempo con mis gatos, Donatello y Zafira.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2>Habilidades Técnicas</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3>Desarrollo Full Stack</h3>
+                        <ul>
+                            <li>GeneXus</li>
+                        </ul>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Desarrollo de Videojuegos</h3>
+                        <ul>
+                            <li>Unity</li>
+                            <li>C#</li>
+                            <li>Game Design</li>
+                            <li>UI/UX para Videojuegos</li>
+                        </ul>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Desarrollo Backend</h3>
+                        <ul>
+                            <li>Python</li>
+                            <li>APIs REST</li>
+                            <li>SQL</li>
+                        </ul>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Herramientas y Metodologías</h3>
+                        <ul>
+                            <li>Git</li>
+                            <li>Jenkins</li>
+                            <li>Notion</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <h2>Experiencia Laboral</h2>
+                <div class="experience-item">
+                    <h3>Desarrollador Full Stack</h3>
+                    <p class="company">DVelop Software</p>
+                    <p class="date">2021 - Presente</p>
+                    <p class="contact-info">
+                        <span class="contact-name">Mariangel Diverio</span>
+                        <span class="contact-separator">|</span>
+                        <a href="mailto:mdiverio@dvelop.com.uy">mdiverio@dvelop.com.uy</a>
+                    </p>
+                    <p class="contact-info">
+                        <span class="contact-name">Leonel Peña</span>
+                        <span class="contact-separator">|</span>
+                        <a href="mailto:lpena@dvelop.com.uy">lpena@dvelop.com.uy</a>
+                    </p>
+                    <ul>
+                        <li>Desarrollo de aplicaciones web, móviles y APIs utilizando GeneXus, impactando a X usuarios</li>
+                        <li>Migración exitosa de X aplicaciones, reduciendo el tiempo de procesamiento en Y%</li>
+                        <li>Implementación de despliegues automatizados en OKD y Azure, reduciendo el tiempo de deployment en Z%</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Desarrollador de Videojuegos</h3>
+                    <p class="company">LOM Games</p>
+                    <p class="date">2022 - Presente</p>
+                    <p class="contact-info">
+                        <span class="contact-name">Federico Machado Debia</span>
+                        <span class="contact-separator">|</span>
+                        <a href="tel:+59899239468">+598 99 239 468</a>
+                    </p>
+                    <ul>
+                        <li>Desarrollo de mecánicas de juego y sistemas de UI/UX</li>
+                        <li>Implementación de lógica de juego en Unity con C#</li>
+                        <li>Liderazgo en el desarrollo de UI/UX para The Abyss Within, alcanzando X descargas en Steam</li>
+                        <li>Implementación de sistemas que mejoraron la retención de usuarios en Y%</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Desarrollador Full Stack</h3>
+                    <p class="company">Credisol</p>
+                    <p class="date">2019 - 2021</p>
+                    <p class="contact-info">
+                        <span class="contact-name">Andrés Piriz</span>
+                        <span class="contact-separator">|</span>
+                        <a href="tel:+59892111792">+598 92 111 792</a>
+                    </p>
+                    <ul>
+                        <li>Desarrollo de sistema interno de gestión de créditos con GeneXus</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="container">
+                <h2>Educación</h2>
+                <div class="education-item">
+                    <h3>Programa b_IT</h3>
+                    <p class="institution">CUTI</p>
+                    <p class="date">2018 - 2020</p>
+                    <ul>
+                        <li>Formación aplicada a la incorporación de conocimientos de lenguajes de programación, métodos para enfrentar una problemática y vinculados al manejo y control de información.</li>
+                    </ul>
+                </div>
+                <div class="education-item">
+                    <h3>Plan Ceibal</h3>
+                    <p class="institution">CUTI</p>
+                    <p class="date">2016 - 2017</p>
+                    <ul>
+                        <li>Desarrollo de herramientas transversales y capacitación de la herramienta GeneXus para la creación y gestión de aplicaciones Web.</li>
+                    </ul>
+                </div>
+                <div class="education-item">
+                    <h3>Bachillerato en Ingeniería</h3>
+                    <p class="institution">Colegio y Liceo - Rafael Barradas</p>
+                    <p class="date">2009 - 2013</p>
+                </div>
+                <!-- Agregar más educación aquí -->
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2>Proyectos Destacados</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>The Abyss Witihn</h3>
+                        <p class="project-description">Juego RPG de cartas en 2D</p>
+                        <ul class="project-details">
+                            <li>Tecnologías utilizadas: Unity, C#, GitLab</li>
+                            <li>Rol: FrontEnd Lead</li>
+                            <li>Logros: Pimer juego publicado en Steam</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://store.steampowered.com/app/2428020/The_Abyss_Within/" target="_blank" rel="noopener noreferrer">Steam</a> |
+                            <a href="https://lom-games.itch.io/the-abyss-within" target="_blank" rel="noopener noreferrer">Demo</a>
+                        </div>
+                    </div>
+                    <!-- Agregar más proyectos aquí -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Información de Contacto</h2>
+                <div class="contact-info-grid">
+                    <div class="contact-info-item">
+                        <h3>Datos Personales</h3>
+                        <ul>
+                            <li><strong>Email:</strong> <a href="mailto:santiago.souto@example.com">souto.santiago.mattias@gmail.com</a></li>
+                            <li><strong>Teléfono:</strong> <a href="tel:+59891060813">+598 91 060 813</a></li>
+                            <li><strong>Ubicación:</strong> Las Toscas, Canelones, Uruguay</li>
+                            <!-- <li><strong>Disponibilidad:</strong> Inmediata</li> -->
+                        </ul>
+                    </div>
+                    <div class="contact-info-item">
+                        <h3>Redes Profesionales</h3>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/santiago-mattias-souto-cervini/" target="_blank" rel="noopener noreferrer">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                                LinkedIn
+                            </a>
+                            <a href="https://gitlab.com/souto.santiago.mattias" target="_blank" rel="noopener noreferrer">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                                    <path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"></path>
+                                </svg>
+                                GitLab
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Botón de exportar PDF -->
+    <button class="export-pdf-btn" onclick="exportToPDF()" title="Exportar a PDF">
+        <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H8V4H20V16ZM4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6ZM16 11H12V13H16V11ZM16 7H12V9H16V7ZM10 15H16V17H10V15Z"/>
+        </svg>
+    </button>
+</body>
+</html> 
