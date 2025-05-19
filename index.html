@@ -328,48 +328,61 @@
 
         /* Estilos para la versión PDF */
         @media print {
-            .export-pdf-btn {
-                display: none;
+            .export-pdf-btn,
+            .profile-img,
+            header::before {
+                display: none !important;
             }
 
-            section {
-                opacity: 1 !important;
-                transform: none !important;
-                page-break-inside: avoid;
+            .pdf-content {
+                padding: 2cm;
             }
 
-            .container {
-                max-width: 100% !important;
-                padding: 0 !important;
-            }
-
-            header {
+            .pdf-content header {
                 background: none !important;
                 color: var(--text-color) !important;
-                padding: 2rem 0 !important;
+                padding: 0 0 2rem 0 !important;
+                text-align: left !important;
             }
 
-            header::before {
-                display: none;
-            }
-
-            h1 {
+            .pdf-content h1 {
                 background: none !important;
                 -webkit-text-fill-color: var(--text-color) !important;
+                font-size: 24pt !important;
             }
 
-            .profile-img {
-                border-color: var(--text-color) !important;
+            .pdf-content h2 {
+                font-size: 18pt !important;
+                margin-top: 1.5cm !important;
             }
 
-            .skill-item, .experience-item, .education-item, .project-card, .contact-form {
+            .pdf-content h3 {
+                font-size: 14pt !important;
+            }
+
+            .pdf-content section {
+                page-break-inside: avoid;
+                margin-bottom: 1cm;
+            }
+
+            .pdf-content .skill-item,
+            .pdf-content .experience-item,
+            .pdf-content .education-item,
+            .pdf-content .project-card,
+            .pdf-content .certification-item {
                 box-shadow: none !important;
                 border: 1px solid #ddd !important;
+                margin-bottom: 0.5cm;
             }
 
-            .social-links a {
+            .pdf-content .social-links a {
                 color: var(--text-color) !important;
                 background: none !important;
+                text-decoration: none !important;
+            }
+
+            .pdf-content .development-badge {
+                display: none !important;
             }
         }
 
@@ -479,6 +492,254 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Nuevos estilos para las secciones agregadas */
+        .objectives {
+            margin-top: var(--spacing-unit);
+            text-align: left;
+        }
+
+        .objectives ul {
+            list-style: none;
+            padding-left: var(--spacing-unit);
+        }
+
+        .objectives ul li {
+            position: relative;
+            padding-left: calc(var(--spacing-unit) * 1.5);
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .objectives ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .certifications-grid,
+        .languages-grid,
+        .additional-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-unit);
+            margin-top: var(--spacing-unit);
+        }
+
+        .certification-item,
+        .language-item,
+        .additional-info-item {
+            background: var(--background-alt);
+            padding: calc(var(--spacing-unit) * 2);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .certification-item h3,
+        .language-item h3,
+        .additional-info-item h3 {
+            color: var(--primary-color);
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .project-details ul {
+            list-style: disc;
+            padding-left: calc(var(--spacing-unit) * 1.5);
+            margin-top: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .project-details ul li {
+            margin-bottom: calc(var(--spacing-unit) * 0.25);
+        }
+
+        @media (max-width: 768px) {
+            .certifications-grid,
+            .languages-grid,
+            .additional-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Estilos para la sección de certificaciones */
+        .certification-category {
+            background: var(--background-alt);
+            padding: calc(var(--spacing-unit) * 2);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .certification-category h3 {
+            color: var(--primary-color);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .certification-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-unit);
+        }
+
+        .certification-item {
+            background: var(--background);
+            padding: calc(var(--spacing-unit) * 1.5);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .certification-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .certification-item h4 {
+            color: var(--secondary-color);
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            font-size: 1.1rem;
+        }
+
+        .certification-item .issuer {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: calc(var(--spacing-unit) * 0.25);
+        }
+
+        .certification-item .date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .certificate-link {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .certificate-link:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .certification-items {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Estilos para redes sociales */
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: var(--background);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            transform: translateX(5px);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Estilos adicionales para datos de contacto */
+        .additional-info-item ul li {
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .additional-info-item ul li strong {
+            color: var(--secondary-color);
+            min-width: 80px;
+        }
+
+        .additional-info-item ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .additional-info-item ul li a:hover {
+            color: var(--primary-light);
+        }
+
+        @media (max-width: 768px) {
+            .additional-info-item ul li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+
+            .additional-info-item ul li strong {
+                min-width: auto;
+            }
+        }
+
+        /* Estilos para proyectos en desarrollo */
+        .project-card.development {
+            position: relative;
+            border: 2px solid var(--primary-light);
+            background: linear-gradient(to bottom right, var(--background), var(--background-alt));
+        }
+
+        .development-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card.development:hover {
+            border-color: var(--primary-color);
+        }
+
+        .project-card.development .project-details ul {
+            list-style: disc;
+            padding-left: calc(var(--spacing-unit) * 1.5);
+            margin-top: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .project-card.development .project-details ul li {
+            margin-bottom: calc(var(--spacing-unit) * 0.25);
+        }
+
+        @media (max-width: 768px) {
+            .development-badge {
+                position: static;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
@@ -502,21 +763,34 @@
 
         // Función para exportar a PDF
         function exportToPDF() {
-            const element = document.body;
+            // Crear un contenedor temporal para el contenido del PDF
+            const pdfContainer = document.createElement('div');
+            pdfContainer.className = 'pdf-content';
+            
+            // Clonar el contenido que queremos exportar
+            const contentToExport = document.querySelector('main').cloneNode(true);
+            pdfContainer.appendChild(contentToExport);
+
+            // Agregar el contenedor temporal al body
+            document.body.appendChild(pdfContainer);
+
             const opt = {
-                margin: 1,
+                margin: [1, 1, 1, 1],
                 filename: 'santiago-souto-cv.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { 
                     scale: 2,
                     useCORS: true,
-                    letterRendering: true
+                    letterRendering: true,
+                    logging: false
                 },
                 jsPDF: { 
                     unit: 'cm', 
                     format: 'a4', 
-                    orientation: 'portrait' 
-                }
+                    orientation: 'portrait',
+                    compress: true
+                },
+                pagebreak: { mode: 'avoid-all' }
             };
 
             // Mostrar indicador de carga
@@ -530,14 +804,16 @@
             btn.disabled = true;
 
             // Generar PDF
-            html2pdf().set(opt).from(element).save().then(() => {
-                // Restaurar botón
+            html2pdf().set(opt).from(pdfContainer).save().then(() => {
+                // Restaurar botón y eliminar el contenedor temporal
                 btn.innerHTML = originalContent;
                 btn.disabled = false;
+                document.body.removeChild(pdfContainer);
             }).catch(error => {
                 console.error('Error al generar PDF:', error);
                 btn.innerHTML = originalContent;
                 btn.disabled = false;
+                document.body.removeChild(pdfContainer);
             });
         }
     </script>
@@ -558,7 +834,15 @@
         <section id="about" class="about-me">
             <div class="container">
                 <h2>Sobre Mí</h2>
-                <p>De nacionalidad uruguaya, apasioado por la tecnología, con interés en el backend y enfoque en el frontend a la hora de trabajar en videojuegos, donde puedo combinar lógica con diseño. Me apasionan los juegos de rol y de cartas, los mundos de fantasía y construir mecánicas que aporten profundidad y estrategia. Formo parte de LOM Games, un estudio independiente en crecimiento, donde comparto ideas y desarrollo junto a un equipo de amigos. En mi tiempo libre disfruto programar, jugar, tomar mates con mi pareja y pasar tiempo con mis gatos, Donatello y Zafira.</p>
+                <p>De nacionalidad uruguaya, apasionado por la tecnología, con interés en el backend y enfoque en el frontend a la hora de trabajar en videojuegos, donde puedo combinar lógica con diseño. Me apasionan los juegos de rol y de cartas, los mundos de fantasía y construir mecánicas que aporten profundidad y estrategia. Formo parte de LOM Games, un estudio independiente en crecimiento, donde comparto ideas y desarrollo junto a un equipo de amigos. En mi tiempo libre disfruto programar, jugar, tomar mates con mi pareja y pasar tiempo con mis gatos, Donatello y Zafira.</p>
+                <div class="objectives">
+                    <h3>Objetivos Profesionales</h3>
+                    <ul>
+                        <li>Continuar ampliando mis conocimientos en backend y frontend</li>
+                        <li>Publicar un segundo videojuego en Steam</li>
+                        <li>Contribuir al desarrollo de videojuegos que combinen mecánicas profundas con narrativas envolventes</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -569,32 +853,56 @@
                     <div class="skill-item">
                         <h3>Desarrollo Full Stack</h3>
                         <ul>
-                            <li>GeneXus</li>
+                            <li>GeneXus (Avanzado - 4 años)</li>
+                            <li>HTML/CSS (Bajo)</li>
                         </ul>
                     </div>
                     <div class="skill-item">
                         <h3>Desarrollo de Videojuegos</h3>
                         <ul>
-                            <li>Unity</li>
-                            <li>C#</li>
-                            <li>Game Design</li>
-                            <li>UI/UX para Videojuegos</li>
+                            <li>Unity (Avanzado - 2 años)</li>
+                            <li>C# (Avanzado - 2 años)</li>
+                            <li>Game Design (Bajo)</li>
+                            <li>UI/UX para Videojuegos (Avanzado)</li>
                         </ul>
                     </div>
                     <div class="skill-item">
                         <h3>Desarrollo Backend</h3>
                         <ul>
-                            <li>Python</li>
-                            <li>APIs REST</li>
-                            <li>SQL</li>
+                            <li>Python (Intermedio - 1 año y medio)</li>
+                            <li>APIs REST (Bajo - 1 año)</li>
+                            <li>SQL (Intermedio - 3 años)</li>
+                            <li>OKD/Azure (Intermedio - 2 años)</li>
                         </ul>
                     </div>
                     <div class="skill-item">
                         <h3>Herramientas y Metodologías</h3>
                         <ul>
-                            <li>Git</li>
-                            <li>Jenkins</li>
-                            <li>Notion</li>
+                            <li>Git (Avanzado - 4 años)</li>
+                            <li>Jenkins (Intermedio - 2 años)</li>
+                            <li>Notion (Bajo - 5 meses)</li>
+                            <li>Metodologías Ágiles (Avanzado - 3 años)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Soft Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3>Habilidades Interpersonales</h3>
+                        <ul>
+                            <li>Trabajo en equipo</li>
+                            <li>Comunicación efectiva</li>
+                            <li>Resolución de problemas</li>
+                            <li>Adaptabilidad</li>
+                        </ul>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Habilidades de Gestión</h3>
+                        <ul>
+                            <li>Gestión de tiempo</li>
+                            <li>Liderazgo técnico</li>
+                            <li>Planificación y organización</li>
                         </ul>
                     </div>
                 </div>
@@ -619,9 +927,9 @@
                         <a href="mailto:lpena@dvelop.com.uy">lpena@dvelop.com.uy</a>
                     </p>
                     <ul>
-                        <li>Desarrollo de aplicaciones web, móviles y APIs utilizando GeneXus, impactando a X usuarios</li>
-                        <li>Migración exitosa de X aplicaciones, reduciendo el tiempo de procesamiento en Y%</li>
-                        <li>Implementación de despliegues automatizados en OKD y Azure, reduciendo el tiempo de deployment en Z%</li>
+                        <li>Desarrollo de aplicaciones web, móviles y APIs utilizando GeneXus, impactando a más de 1000 usuarios activos</li>
+                        <li>Migración exitosa de aproximadamente 10 aplicaciones</li>
+                        <li>Integración con sistemas externos</li>
                     </ul>
                 </div>
                 <div class="experience-item">
@@ -634,10 +942,8 @@
                         <a href="tel:+59899239468">+598 99 239 468</a>
                     </p>
                     <ul>
-                        <li>Desarrollo de mecánicas de juego y sistemas de UI/UX</li>
-                        <li>Implementación de lógica de juego en Unity con C#</li>
-                        <li>Liderazgo en el desarrollo de UI/UX para The Abyss Within, alcanzando X descargas en Steam</li>
-                        <li>Implementación de sistemas que mejoraron la retención de usuarios en Y%</li>
+                        <li>Liderazgo en el desarrollo de UI/UX para The Abyss Within, alcanzando 500+ descargas en Steam</li>
+                        <li>Desarrollo de mecánicas de juego innovadoras y sistemas de UI/UX intuitivos</li>
                     </ul>
                 </div>
                 <div class="experience-item">
@@ -651,6 +957,8 @@
                     </p>
                     <ul>
                         <li>Desarrollo de sistema interno de gestión de créditos con GeneXus</li>
+                        <li>Integración con sistemas bancarios externos</li>
+                        <li>Optimización de consultas SQL, mejorando rendimientos</li>
                     </ul>
                 </div>
             </div>
@@ -662,7 +970,7 @@
                 <div class="education-item">
                     <h3>Programa b_IT</h3>
                     <p class="institution">CUTI</p>
-                    <p class="date">2018 - 2020</p>
+                    <p class="date">2017 - 2018</p>
                     <ul>
                         <li>Formación aplicada a la incorporación de conocimientos de lenguajes de programación, métodos para enfrentar una problemática y vinculados al manejo y control de información.</li>
                     </ul>
@@ -673,6 +981,7 @@
                     <p class="date">2016 - 2017</p>
                     <ul>
                         <li>Desarrollo de herramientas transversales y capacitación de la herramienta GeneXus para la creación y gestión de aplicaciones Web.</li>
+                        <li>Certificación en GeneXus 15</li>
                     </ul>
                 </div>
                 <div class="education-item">
@@ -680,7 +989,113 @@
                     <p class="institution">Colegio y Liceo - Rafael Barradas</p>
                     <p class="date">2009 - 2013</p>
                 </div>
-                <!-- Agregar más educación aquí -->
+            </div>
+        </section>
+
+        <section id="certifications">
+            <div class="container">
+                <h2>Certificaciones</h2>
+                <div class="certifications-grid">
+                    <div class="certification-category">
+                        <h3>Desarrollo de Software</h3>
+                        <div class="certification-items">
+                            <div class="certification-item">
+                                <h4>Maestro de Python 3</h4>
+                                <p class="issuer">Udemy</p>
+                                <p class="date">2018</p>
+                                <a href="Certificado Udemy SQL Desde Cero.pdf" target="_blank" class="certificate-link">Ver Certificado</a>
+                            </div>
+                            <div class="certification-item">
+                                <h4>SQL Desde Cero</h4>
+                                <p class="issuer">Udemy</p>
+                                <p class="date">2018</p>
+                                <a href="Certificado Udemy SQL Desde Cero.pdf" target="_blank" class="certificate-link">Ver Certificado</a>
+                            </div>
+                            <div class="certification-item">
+                                <h4>Analista GeneXus</h4>
+                                <p class="issuer">CUTI</p>
+                                <p class="date">2018</p>
+                                <a href="Certificado Analista GeneXus" target="_blank" class="certificate-link">Ver Certificado</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="certification-category">
+                        <h3>Gestión y Metodologías</h3>
+                        <div class="certification-items">
+                            <div class="certification-item">
+                                <h4>Introducción a la Gestión de Proyectos</h4>
+                                <p class="issuer">Universitat Politécnica de Valéncia</p>
+                                <p class="date">2018</p>
+                                <a href="UPValenciaX Introducción a la gestión de proyectos (1).pdf" target="_blank" class="certificate-link">Ver Certificado</a>
+                            </div>
+                            <div class="certification-item">
+                                <h4>Fundamentos TIC para profesionales de negocios</h4>
+                                <p class="issuer">Universitat Politécnica de Valéncia</p>
+                                <p class="date">2018</p>
+                                <a href="Certificado UPValenciaX Fundamentos TIC para profesionales de negocios - Desarrollo de Software.pdf" target="_blank" class="certificate-link">Ver Certificado</a>
+                            </div>
+                            <div class="certification-item">
+                                <h4>Ingeniería de Software</h4>
+                                <p class="issuer">Universidad Autónoma de Madrid</p>
+                                <p class="date">2018</p>
+                                <a href="Certificado UAMx IngSoftware _ edX.pdf" target="_blank" class="certificate-link">Ver Certificado</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="certification-category">
+                        <h3>Desarrollo de Videojuegos</h3>
+                        <div class="certification-items">
+                            <div class="certification-item">
+                                <h4>Certificado de Participación Global Game Jam Online A+</h4>
+                                <p class="issuer">Unity Technologies</p>
+                                <p class="date">2021</p>
+                                <a href="GGJ21_Santiago" target="_blank" class="certificate-link">Ver Certificado</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="certification-category">
+                        <h3>Programación y Análisis</h3>
+                        <div class="certification-items">
+                            <div class="certification-item">
+                                <h4>Introducción a la Programación</h4>
+                                <p class="issuer">MiriadaX</p>
+                                <p class="date">2018</p>
+                                <a href="MiriadaX - Introduccion a la Programacion.png" target="_blank" class="certificate-link">Ver Certificado</a>
+                            </div>
+                            <div class="certification-item">
+                                <h4>Análisis e Implementación de Proyectos</h4>
+                                <p class="issuer">Universitat Politécnica de Valéncia</p>
+                                <p class="date">2018</p>
+                                <a href="Certificado UPValenciaX AIP201x _ edX.pdf" target="_blank" class="certificate-link">Ver Certificado</a>
+                            </div>
+                            <div class="certification-item">
+                                <h4>UML</h4>
+                                <p class="issuer">Universitat Politécnica de Valéncia</p>
+                                <p class="date">2018</p>
+                                <a href="Certificado UPValenciaX UML101x _ edX.pdf" target="_blank" class="certificate-link">Ver Certificado</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages">
+            <div class="container">
+                <h2>Idiomas</h2>
+                <div class="languages-grid">
+                    <div class="language-item">
+                        <h3>Español</h3>
+                        <p>Nativo</p>
+                    </div>
+                    <div class="language-item">
+                        <h3>Inglés</h3>
+                        <p>Intermedio (B2)</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -689,37 +1104,81 @@
                 <h2>Proyectos Destacados</h2>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <h3>The Abyss Witihn</h3>
+                        <h3>The Abyss Within</h3>
                         <p class="project-description">Juego RPG de cartas en 2D</p>
                         <ul class="project-details">
-                            <li>Tecnologías utilizadas: Unity, C#, GitLab</li>
+                            <li>Tecnologías: Unity, C#, GitLab</li>
                             <li>Rol: FrontEnd Lead</li>
-                            <li>Logros: Pimer juego publicado en Steam</li>
+                            <li>Período: 2022 - Presente</li>
+                            <li>Logros: 
+                                <ul>
+                                    <li>500+ descargas en Steam</li>
+                                </ul>
+                            </li>
+                            <li>Desafíos: Implementación de UI/UX, Manejo de animaciones y transiciones</li>
                         </ul>
                         <div class="project-links">
                             <a href="https://store.steampowered.com/app/2428020/The_Abyss_Within/" target="_blank" rel="noopener noreferrer">Steam</a> |
                             <a href="https://lom-games.itch.io/the-abyss-within" target="_blank" rel="noopener noreferrer">Demo</a>
                         </div>
                     </div>
-                    <!-- Agregar más proyectos aquí -->
                 </div>
             </div>
         </section>
 
-        <section id="contact">
+        <section id="projects-in-development">
             <div class="container">
-                <h2>Información de Contacto</h2>
-                <div class="contact-info-grid">
-                    <div class="contact-info-item">
-                        <h3>Datos Personales</h3>
-                        <ul>
-                            <li><strong>Email:</strong> <a href="mailto:santiago.souto@example.com">souto.santiago.mattias@gmail.com</a></li>
-                            <li><strong>Teléfono:</strong> <a href="tel:+59891060813">+598 91 060 813</a></li>
-                            <li><strong>Ubicación:</strong> Las Toscas, Canelones, Uruguay</li>
-                            <!-- <li><strong>Disponibilidad:</strong> Inmediata</li> -->
+                <h2>Proyectos en Desarrollo</h2>
+                <div class="projects-grid">
+                    <div class="project-card development">
+                        <div class="development-badge">En Desarrollo</div>
+                        <h3>Cat Shelter</h3>
+                        <p class="project-description">Simulador de gestión de refugio de gatos</p>
+                        <ul class="project-details">
+                            <li>Tecnologías: Unity, C#</li>
+                            <li>Rol: Desarrollador Independiente</li>
+                            <li>Estado: Fase de Desarrollo</li>
+                            <li>Objetivo: 
+                                <ul>
+                                    <li>Crear una experiencia didáctica sobre la gestión de un refugio de gatos</li>
+                                    <li>Simular situaciones reales de cuidado y manejo de felinos</li>
+                                    <li>Concientizar sobre la responsabilidad del cuidado animal</li>
+                                </ul>
+                            </li>
+                            <li>Características Principales:
+                                <ul>
+                                    <li>Sistema de gestión de recursos (alimento, medicamentos, espacio)</li>
+                                    <li>Mecánicas de cuidado y atención a gatos</li>
+                                    <li>Simulación de eventos aleatorios y emergencias</li>
+                                    <li>Interfaz intuitiva y amigable</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
-                    <div class="contact-info-item">
+                </div>
+            </div>
+        </section>
+
+        <section id="additional-info">
+            <div class="container">
+                <h2>Información Adicional</h2>
+                <div class="additional-info-grid">
+                    <div class="additional-info-item">
+                        <h3>Datos de Contacto</h3>
+                        <ul>
+                            <li><strong>Email:</strong> <a href="mailto:souto.santiago.mattias@gmail.com">souto.santiago.mattias@gmail.com</a></li>
+                            <li><strong>Teléfono:</strong> <a href="tel:+59891060813">+598 91 060 813</a></li>
+                            <li><strong>Ubicación:</strong> Las Toscas, Canelones, Uruguay</li>
+                        </ul>
+                    </div>
+                    <div class="additional-info-item">
+                        <h3>Disponibilidad</h3>
+                        <ul>
+                            <li>Modalidad: Remoto/Híbrido</li>
+                            <li>Movilidad: Disponible para viajar</li>
+                        </ul>
+                    </div>
+                    <div class="additional-info-item">
                         <h3>Redes Profesionales</h3>
                         <div class="social-links">
                             <a href="https://www.linkedin.com/in/santiago-mattias-souto-cervini/" target="_blank" rel="noopener noreferrer">
@@ -742,12 +1201,5 @@
             </div>
         </section>
     </main>
-
-    <!-- Botón de exportar PDF -->
-    <button class="export-pdf-btn" onclick="exportToPDF()" title="Exportar a PDF">
-        <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H8V4H20V16ZM4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6ZM16 11H12V13H16V11ZM16 7H12V9H16V7ZM10 15H16V17H10V15Z"/>
-        </svg>
-    </button>
 </body>
 </html> 
