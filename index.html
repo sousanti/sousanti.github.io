@@ -1143,14 +1143,24 @@
 
             // Información de Contacto
             const contactContent = document.createElement('div');
-            const contactInfo = document.querySelector('#additional-info .additional-info-item');
-            const contactDetails = Array.from(contactInfo.querySelectorAll('li'))
-                .map(li => li.textContent.replace(/\s+/g, ' ').trim());
-            
-            contactDetails.forEach(detail => {
-                contactContent.appendChild(createElement('p', detail, { marginBottom: '5px' }));
+            const contactInfo = document.querySelector('#additional-info .additional-info-item ul');
+            if (contactInfo) {
+                const contactDetails = Array.from(contactInfo.querySelectorAll('li'))
+                    .map(li => li.textContent.replace(/\s+/g, ' ').trim());
+                contactDetails.forEach(detail => {
+                    contactContent.appendChild(createElement('p', detail, { marginBottom: '5px' }));
+                });
+                pdfContainer.appendChild(createSection('Información de Contacto', contactContent));
+            }
+            // Redes Profesionales
+            const redesContent = document.createElement('div');
+            const redesLinks = document.querySelectorAll('#additional-info .social-links a');
+            redesLinks.forEach(link => {
+                const name = link.textContent.trim();
+                const url = link.getAttribute('href');
+                redesContent.appendChild(createElement('p', `${name}: ${url}`, { marginBottom: '5px' }));
             });
-            pdfContainer.appendChild(createSection('Información de Contacto', contactContent));
+            pdfContainer.appendChild(createSection('Redes Profesionales', redesContent));
 
             // Agregar el contenedor al body (oculto)
             document.body.appendChild(pdfContainer);
@@ -1337,9 +1347,20 @@
                 addSection('Proyectos en Desarrollo', devProjLines);
             }
             // Información de Contacto
-            const contactInfo = document.querySelector('#additional-info .additional-info-item');
-            const contactDetails = Array.from(contactInfo.querySelectorAll('li')).map(li => li.textContent.replace(/\s+/g, ' ').trim());
-            addSection('Información de Contacto', contactDetails);
+            const contactInfo = document.querySelector('#additional-info .additional-info-item ul');
+            if (contactInfo) {
+                const contactDetails = Array.from(contactInfo.querySelectorAll('li')).map(li => li.textContent.replace(/\s+/g, ' ').trim());
+                addSection('Información de Contacto', contactDetails);
+            }
+            // Redes Profesionales
+            const redesLinks = document.querySelectorAll('#additional-info .social-links a');
+            let redesLines = [];
+            redesLinks.forEach(link => {
+                const name = link.textContent.trim();
+                const url = link.getAttribute('href');
+                redesLines.push(`${name}: ${url}`);
+            });
+            addSection('Redes Profesionales', redesLines);
             doc.save('santiago-souto-cv.pdf');
         }
 
