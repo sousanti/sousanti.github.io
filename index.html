@@ -713,6 +713,8 @@
 
         /* Estilos para la sección de certificaciones */
         .certification-category {
+            width: 100%;
+            min-width: 0;
             background: var(--background-alt);
             padding: calc(var(--spacing-unit) * 2);
             border-radius: var(--border-radius);
@@ -728,11 +730,13 @@
 
         .certification-items {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* ancho mínimo razonable */
             gap: var(--spacing-unit);
         }
 
         .certification-item {
+            max-width: 100%;
+            overflow-wrap: break-word;
             background: var(--background);
             padding: calc(var(--spacing-unit) * 1.5);
             border-radius: var(--border-radius);
@@ -1477,7 +1481,7 @@
                     </p>
                     <ul>
                         <li>Liderazgo en el desarrollo de UI/UX para The Abyss Within, alcanzando 500+ descargas en Steam</li>
-                        <li>Desarrollo de mecánicas de juego innovadoras y sistemas de UI/UX</li>
+                        <li>Desarrollo de mecánicas y UI/UX</li>
                     </ul>
                 </div>
                 <div class="experience-item">
