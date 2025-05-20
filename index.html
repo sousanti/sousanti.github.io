@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Currículum | Desarrollador de Software</title>
+    <title>Experiencia Profesional | Santiago Souto</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         /* Variables y reset */
         :root {
@@ -277,30 +278,34 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 56px;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: var(--transition);
+            transition: all 0.3s ease;
             z-index: 1000;
+            padding: 0;
+            animation: pulse 2s infinite;
         }
 
         .export-pdf-btn:hover {
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-5px);
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
         }
 
-        .export-pdf-btn svg {
-            width: 28px;
-            height: 28px;
-            fill: currentColor;
+        .export-pdf-btn:active {
+            transform: translateY(-2px);
+            animation: none;
         }
 
         .export-pdf-btn .pdf-icon {
-            transform-origin: center;
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
             transition: transform 0.3s ease;
         }
 
@@ -308,17 +313,16 @@
             transform: scale(1.1);
         }
 
-        .export-pdf-btn:active {
-            transform: translateY(-2px) scale(0.95);
-        }
-
         .export-pdf-btn:disabled {
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
+            animation: none;
         }
 
         .export-pdf-btn .loading-icon {
+            width: 24px;
+            height: 24px;
             animation: spin 1s linear infinite;
         }
 
@@ -326,63 +330,210 @@
             to { transform: rotate(360deg); }
         }
 
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            }
+            100% {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .export-pdf-btn {
+                bottom: 1rem;
+                right: 1rem;
+                width: 48px;
+                height: 48px;
+            }
+
+            .export-pdf-btn .pdf-icon,
+            .export-pdf-btn .loading-icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
         /* Estilos para la versión PDF */
         @media print {
-            .export-pdf-btn,
-            .profile-img,
-            header::before {
-                display: none !important;
+            body {
+                background: white;
+                color: black;
+                font-family: Arial, sans-serif;
+                font-size: 11pt;
+                line-height: 1.4;
+                margin: 0;
+                padding: 0;
             }
 
             .pdf-content {
-                padding: 2cm;
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
             }
 
             .pdf-content header {
                 background: none !important;
-                color: var(--text-color) !important;
-                padding: 0 0 2rem 0 !important;
+                color: black !important;
+                padding: 0 !important;
+                margin-bottom: 20px !important;
                 text-align: left !important;
             }
 
             .pdf-content h1 {
+                font-size: 20pt !important;
+                color: black !important;
+                margin: 0 0 5px 0 !important;
+                padding: 0 !important;
                 background: none !important;
-                -webkit-text-fill-color: var(--text-color) !important;
-                font-size: 24pt !important;
+                -webkit-text-fill-color: black !important;
             }
 
             .pdf-content h2 {
-                font-size: 18pt !important;
-                margin-top: 1.5cm !important;
+                font-size: 14pt !important;
+                color: black !important;
+                margin: 20px 0 10px 0 !important;
+                padding: 0 !important;
+                border-bottom: 1px solid #000 !important;
             }
 
             .pdf-content h3 {
-                font-size: 14pt !important;
+                font-size: 12pt !important;
+                color: black !important;
+                margin: 15px 0 5px 0 !important;
+                padding: 0 !important;
+            }
+
+            .pdf-content h4 {
+                font-size: 11pt !important;
+                color: black !important;
+                margin: 10px 0 5px 0 !important;
+                padding: 0 !important;
+            }
+
+            .pdf-content p {
+                margin: 5px 0 !important;
+                padding: 0 !important;
             }
 
             .pdf-content section {
                 page-break-inside: avoid;
-                margin-bottom: 1cm;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .pdf-content .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .pdf-content .profile-img,
+            .pdf-content .social-links,
+            .pdf-content .certificate-link,
+            .pdf-content .project-links,
+            .pdf-content .contact-info a,
+            .pdf-content .additional-info-item a,
+            .pdf-content .development-badge,
+            .export-pdf-btn {
+                display: none !important;
+            }
+
+            .pdf-content .skills-grid,
+            .pdf-content .projects-grid,
+            .pdf-content .certifications-grid,
+            .pdf-content .languages-grid,
+            .pdf-content .additional-info-grid {
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
 
             .pdf-content .skill-item,
             .pdf-content .experience-item,
             .pdf-content .education-item,
             .pdf-content .project-card,
-            .pdf-content .certification-item {
+            .pdf-content .certification-item,
+            .pdf-content .language-item,
+            .pdf-content .additional-info-item {
+                break-inside: avoid;
+                margin: 0 0 10px 0 !important;
+                padding: 0 !important;
                 box-shadow: none !important;
-                border: 1px solid #ddd !important;
-                margin-bottom: 0.5cm;
-            }
-
-            .pdf-content .social-links a {
-                color: var(--text-color) !important;
+                border: none !important;
                 background: none !important;
-                text-decoration: none !important;
             }
 
-            .pdf-content .development-badge {
+            .pdf-content .contact-info,
+            .pdf-content .contact-separator {
+                color: black !important;
+            }
+
+            .pdf-content ul {
+                margin: 5px 0 5px 20px !important;
+                padding: 0 !important;
+            }
+
+            .pdf-content li {
+                margin-bottom: 3px !important;
+            }
+
+            .pdf-content .date {
+                color: black !important;
+                font-size: 10pt !important;
+                margin: 0 !important;
+            }
+
+            .pdf-content .company,
+            .pdf-content .institution,
+            .pdf-content .issuer {
+                color: black !important;
+                font-weight: bold !important;
+                margin: 0 !important;
+            }
+
+            .pdf-content .about-me {
+                background: none !important;
+                padding: 0 !important;
+                margin: 0 0 20px 0 !important;
+                text-align: left !important;
+            }
+
+            .pdf-content .objectives ul {
+                list-style: disc !important;
+                padding-left: 20px !important;
+            }
+
+            .pdf-content .objectives ul li::before {
                 display: none !important;
+            }
+
+            .pdf-content .contact-info {
+                margin: 5px 0 !important;
+            }
+
+            .pdf-content .contact-name {
+                font-weight: bold !important;
+            }
+
+            .pdf-content .project-description {
+                font-style: italic !important;
+                margin: 5px 0 !important;
+            }
+
+            .pdf-content .project-details ul {
+                list-style: disc !important;
+            }
+
+            .pdf-content .project-details ul li {
+                margin-bottom: 3px !important;
+            }
+
+            .pdf-content .project-details ul li ul {
+                margin-top: 3px !important;
             }
         }
 
@@ -740,8 +891,49 @@
                 margin-bottom: 1rem;
             }
         }
+
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+        }
+        .scroll-top-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+        }
+        .scroll-top-btn:active {
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .scroll-top-btn {
+                bottom: 1rem;
+                left: 1rem;
+                width: 48px;
+                height: 48px;
+            }
+            .scroll-top-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         // Intersection Observer para animaciones de scroll
         document.addEventListener('DOMContentLoaded', function() {
@@ -761,19 +953,205 @@
             });
         });
 
-        // Función para exportar a PDF
         function exportToPDF() {
-            // Crear un contenedor temporal para el contenido del PDF
+            // Crear un contenedor temporal para el PDF
             const pdfContainer = document.createElement('div');
-            pdfContainer.className = 'pdf-content';
-            
-            // Clonar el contenido que queremos exportar
-            const contentToExport = document.querySelector('main').cloneNode(true);
-            pdfContainer.appendChild(contentToExport);
+            pdfContainer.style.padding = '20px';
+            pdfContainer.style.fontFamily = 'Arial, sans-serif';
+            pdfContainer.style.fontSize = '11pt';
+            pdfContainer.style.lineHeight = '1.4';
+            pdfContainer.style.color = 'black';
+            pdfContainer.style.position = 'fixed';
+            pdfContainer.style.left = '-9999px';
+            pdfContainer.style.top = '0';
 
-            // Agregar el contenedor temporal al body
+            // Función auxiliar para crear elementos
+            const createElement = (tag, text, style = {}) => {
+                const element = document.createElement(tag);
+                element.textContent = text;
+                Object.assign(element.style, style);
+                return element;
+            };
+
+            // Función para crear secciones
+            const createSection = (title, content) => {
+                const section = document.createElement('div');
+                section.style.marginBottom = '20px';
+                section.style.pageBreakInside = 'avoid';
+
+                const heading = createElement('h2', title, {
+                    fontSize: '14pt',
+                    marginBottom: '10px',
+                    borderBottom: '1px solid black',
+                    paddingBottom: '5px'
+                });
+
+                section.appendChild(heading);
+                section.appendChild(content);
+                return section;
+            };
+
+            // Nombre y título
+            const header = createElement('div', '', { marginBottom: '20px' });
+            header.appendChild(createElement('h1', 'Santiago Souto', { fontSize: '20pt', marginBottom: '5px' }));
+            header.appendChild(createElement('p', 'Desarrollador de Software y Videojuegos', { fontSize: '12pt' }));
+            pdfContainer.appendChild(header);
+
+            // Sobre Mí
+            const aboutMe = document.querySelector('#about p').textContent;
+            const objectives = Array.from(document.querySelectorAll('#about .objectives li'))
+                .map(li => li.textContent);
+            
+            const aboutContent = document.createElement('div');
+            aboutContent.appendChild(createElement('p', aboutMe, { marginBottom: '10px' }));
+            
+            const objectivesList = document.createElement('ul');
+            objectives.forEach(obj => {
+                const li = createElement('li', obj, { marginBottom: '5px' });
+                objectivesList.appendChild(li);
+            });
+            aboutContent.appendChild(objectivesList);
+            
+            pdfContainer.appendChild(createSection('Sobre Mí', aboutContent));
+
+            // Habilidades Técnicas
+            const skillsContent = document.createElement('div');
+            const skillsGrid = document.querySelectorAll('#skills .skill-item');
+            skillsGrid.forEach(skillItem => {
+                const title = skillItem.querySelector('h3').textContent;
+                const skills = Array.from(skillItem.querySelectorAll('li'))
+                    .map(li => li.textContent);
+                
+                skillsContent.appendChild(createElement('h3', title, { marginTop: '10px', marginBottom: '5px' }));
+                const ul = document.createElement('ul');
+                skills.forEach(skill => {
+                    ul.appendChild(createElement('li', skill, { marginBottom: '3px' }));
+                });
+                skillsContent.appendChild(ul);
+            });
+            pdfContainer.appendChild(createSection('Habilidades Técnicas', skillsContent));
+
+            // Experiencia Laboral
+            const experienceContent = document.createElement('div');
+            const experiences = document.querySelectorAll('#experience .experience-item');
+            let expLines = [];
+            experiences.forEach(exp => {
+                const title = exp.querySelector('h3').textContent;
+                const company = exp.querySelector('.company').textContent;
+                const date = exp.querySelector('.date').textContent;
+                const details = Array.from(exp.querySelectorAll('li')).map(li => '    * ' + li.textContent);
+                expLines.push(title + ' (' + company + ', ' + date + ')');
+                // Contactos de referencia
+                const contacts = Array.from(exp.querySelectorAll('.contact-info')).map(c => c.textContent.replace(/\s+/g, ' ').trim());
+                contacts.forEach(contact => {
+                    expLines.push('      > ' + contact);
+                });
+                expLines = expLines.concat(details);
+            });
+            experienceContent.appendChild(createElement('ul', expLines, { marginBottom: '10px' }));
+
+            // Educación
+            const educationContent = document.createElement('div');
+            const educations = document.querySelectorAll('#education .education-item');
+            educations.forEach(edu => {
+                const title = edu.querySelector('h3').textContent;
+                const institution = edu.querySelector('.institution').textContent;
+                const date = edu.querySelector('.date').textContent;
+                const details = Array.from(edu.querySelectorAll('li'))
+                    .map(li => li.textContent);
+
+                const eduDiv = document.createElement('div');
+                eduDiv.style.marginBottom = '15px';
+                eduDiv.appendChild(createElement('h3', title, { marginBottom: '3px' }));
+                eduDiv.appendChild(createElement('p', institution, { fontWeight: 'bold', marginBottom: '3px' }));
+                eduDiv.appendChild(createElement('p', date, { marginBottom: '5px' }));
+                
+                if (details.length > 0) {
+                    const ul = document.createElement('ul');
+                    details.forEach(detail => {
+                        ul.appendChild(createElement('li', detail, { marginBottom: '3px' }));
+                    });
+                    eduDiv.appendChild(ul);
+                }
+                educationContent.appendChild(eduDiv);
+            });
+            pdfContainer.appendChild(createSection('Educación', educationContent));
+
+            // Certificaciones
+            const certificationsContent = document.createElement('div');
+            const certifications = document.querySelectorAll('#certifications .certification-item');
+            certifications.forEach(cert => {
+                const title = cert.querySelector('h4').textContent;
+                const issuer = cert.querySelector('.issuer').textContent;
+                const date = cert.querySelector('.date').textContent;
+
+                const certDiv = document.createElement('div');
+                certDiv.style.marginBottom = '10px';
+                certDiv.appendChild(createElement('h4', title, { marginBottom: '3px' }));
+                certDiv.appendChild(createElement('p', issuer, { fontWeight: 'bold', marginBottom: '3px' }));
+                certDiv.appendChild(createElement('p', date, { marginBottom: '5px' }));
+                certificationsContent.appendChild(certDiv);
+            });
+            pdfContainer.appendChild(createSection('Certificaciones', certificationsContent));
+
+            // Idiomas
+            const languagesContent = document.createElement('div');
+            const languages = document.querySelectorAll('#languages .language-item');
+            languages.forEach(lang => {
+                const language = lang.querySelector('h3').textContent;
+                const level = lang.querySelector('p').textContent;
+                languagesContent.appendChild(createElement('p', `${language}: ${level}`, { marginBottom: '5px' }));
+            });
+            pdfContainer.appendChild(createSection('Idiomas', languagesContent));
+
+            // Proyectos
+            const projectsContent = document.createElement('div');
+            const projects = document.querySelectorAll('#projects .project-card');
+            projects.forEach(project => {
+                const title = project.querySelector('h3').textContent;
+                const description = project.querySelector('.project-description').textContent;
+                const details = Array.from(project.querySelectorAll('.project-details > li')).flatMap(li => {
+                    let lines = ['    * ' + li.childNodes[0].textContent.trim()];
+                    // Si hay sublista, agregar los subitems con más sangría
+                    const subUl = li.querySelector('ul');
+                    if (subUl) {
+                        const subLis = Array.from(subUl.querySelectorAll('li'));
+                        subLis.forEach(subli => {
+                            lines.push('        - ' + subli.textContent.trim());
+                        });
+                    }
+                    return lines;
+                });
+
+                const projectDiv = document.createElement('div');
+                projectDiv.style.marginBottom = '15px';
+                projectDiv.appendChild(createElement('h3', title, { marginBottom: '3px' }));
+                projectDiv.appendChild(createElement('p', description, { fontStyle: 'italic', marginBottom: '5px' }));
+                
+                const ul = document.createElement('ul');
+                details.forEach(detail => {
+                    ul.appendChild(createElement('li', detail, { marginBottom: '3px' }));
+                });
+                projectDiv.appendChild(ul);
+                projectsContent.appendChild(projectDiv);
+            });
+            pdfContainer.appendChild(createSection('Proyectos Destacados', projectsContent));
+
+            // Información de Contacto
+            const contactContent = document.createElement('div');
+            const contactInfo = document.querySelector('#additional-info .additional-info-item');
+            const contactDetails = Array.from(contactInfo.querySelectorAll('li'))
+                .map(li => li.textContent.replace(/\s+/g, ' ').trim());
+            
+            contactDetails.forEach(detail => {
+                contactContent.appendChild(createElement('p', detail, { marginBottom: '5px' }));
+            });
+            pdfContainer.appendChild(createSection('Información de Contacto', contactContent));
+
+            // Agregar el contenedor al body (oculto)
             document.body.appendChild(pdfContainer);
 
+            // Configuración del PDF
             const opt = {
                 margin: [1, 1, 1, 1],
                 filename: 'santiago-souto-cv.pdf',
@@ -789,8 +1167,7 @@
                     format: 'a4', 
                     orientation: 'portrait',
                     compress: true
-                },
-                pagebreak: { mode: 'avoid-all' }
+                }
             };
 
             // Mostrar indicador de carga
@@ -805,7 +1182,6 @@
 
             // Generar PDF
             html2pdf().set(opt).from(pdfContainer).save().then(() => {
-                // Restaurar botón y eliminar el contenedor temporal
                 btn.innerHTML = originalContent;
                 btn.disabled = false;
                 document.body.removeChild(pdfContainer);
@@ -815,6 +1191,165 @@
                 btn.disabled = false;
                 document.body.removeChild(pdfContainer);
             });
+        }
+
+        function exportToPDFjsPDF() {
+            const doc = new window.jspdf.jsPDF({ unit: 'pt', format: 'a4' });
+            let y = 40;
+            const lineHeight = 18;
+            const margin = 40;
+            const maxWidth = 515;
+            function addSection(title, content) {
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(15);
+                doc.text(title, margin, y);
+                y += lineHeight;
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(11);
+                content.forEach(line => {
+                    const lines = doc.splitTextToSize(line, maxWidth);
+                    lines.forEach(l => {
+                        if (y > 800) { doc.addPage(); y = 40; }
+                        doc.text(l, margin, y);
+                        y += lineHeight;
+                    });
+                });
+                y += 8;
+            }
+            // Nombre y título
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(22);
+            doc.text('Santiago Souto', margin, y);
+            y += lineHeight + 2;
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(13);
+            doc.text('Desarrollador de Software y Videojuegos', margin, y);
+            y += lineHeight + 6;
+            // Sobre Mí
+            const aboutMe = document.querySelector('#about p').textContent;
+            const objectives = Array.from(document.querySelectorAll('#about .objectives li')).map(li => '• ' + li.textContent);
+            addSection('Sobre Mí', [aboutMe, ...objectives]);
+            // Habilidades Técnicas
+            const skillsGrid = document.querySelectorAll('#skills .skill-item');
+            let skillsLines = [];
+            skillsGrid.forEach(skillItem => {
+                const title = skillItem.querySelector('h3').textContent;
+                const skills = Array.from(skillItem.querySelectorAll('li')).map(li => '  - ' + li.textContent);
+                skillsLines.push(title);
+                skillsLines = skillsLines.concat(skills);
+            });
+            addSection('Habilidades Técnicas', skillsLines);
+            // Experiencia Laboral
+            const experiences = document.querySelectorAll('#experience .experience-item');
+            let expLines = [];
+            experiences.forEach(exp => {
+                const title = exp.querySelector('h3').textContent;
+                const company = exp.querySelector('.company').textContent;
+                const date = exp.querySelector('.date').textContent;
+                const details = Array.from(exp.querySelectorAll('li')).map(li => '    * ' + li.textContent);
+                expLines.push(title + ' (' + company + ', ' + date + ')');
+                // Contactos de referencia
+                const contacts = Array.from(exp.querySelectorAll('.contact-info')).map(c => c.textContent.replace(/\s+/g, ' ').trim());
+                contacts.forEach(contact => {
+                    expLines.push('      > ' + contact);
+                });
+                expLines = expLines.concat(details);
+            });
+            addSection('Experiencia Laboral', expLines);
+            // Educación
+            const educations = document.querySelectorAll('#education .education-item');
+            let eduLines = [];
+            educations.forEach(edu => {
+                const title = edu.querySelector('h3').textContent;
+                const institution = edu.querySelector('.institution').textContent;
+                const date = edu.querySelector('.date').textContent;
+                const details = Array.from(edu.querySelectorAll('li')).map(li => '    * ' + li.textContent);
+                eduLines.push(title + ' (' + institution + ', ' + date + ')');
+                eduLines = eduLines.concat(details);
+            });
+            addSection('Educación', eduLines);
+            // Certificaciones
+            const certifications = document.querySelectorAll('#certifications .certification-item');
+            let certLines = [];
+            certifications.forEach(cert => {
+                const title = cert.querySelector('h4').textContent;
+                const issuer = cert.querySelector('.issuer').textContent;
+                const date = cert.querySelector('.date').textContent;
+                certLines.push(title + ' - ' + issuer + ' (' + date + ')');
+            });
+            addSection('Certificaciones', certLines);
+            // Idiomas
+            const languages = document.querySelectorAll('#languages .language-item');
+            let langLines = [];
+            languages.forEach(lang => {
+                const language = lang.querySelector('h3').textContent;
+                const level = lang.querySelector('p').textContent;
+                langLines.push(language + ': ' + level);
+            });
+            addSection('Idiomas', langLines);
+            // Proyectos
+            const projects = document.querySelectorAll('#projects .project-card');
+            let projLines = [];
+            projects.forEach(project => {
+                const title = project.querySelector('h3').textContent;
+                const description = project.querySelector('.project-description').textContent;
+                const details = Array.from(project.querySelectorAll('.project-details > li')).flatMap(li => {
+                    let lines = ['    * ' + li.childNodes[0].textContent.trim()];
+                    // Si hay sublista, agregar los subitems con más sangría
+                    const subUl = li.querySelector('ul');
+                    if (subUl) {
+                        const subLis = Array.from(subUl.querySelectorAll('li'));
+                        subLis.forEach(subli => {
+                            lines.push('        - ' + subli.textContent.trim());
+                        });
+                    }
+                    return lines;
+                });
+                projLines.push(title + ' - ' + description);
+                projLines = projLines.concat(details);
+            });
+            addSection('Proyectos Destacados', projLines);
+            // Proyectos en Desarrollo
+            const devProjects = document.querySelectorAll('#projects-in-development .project-card.development');
+            let devProjLines = [];
+            devProjects.forEach(project => {
+                const title = project.querySelector('h3').textContent;
+                const description = project.querySelector('.project-description').textContent;
+                const details = Array.from(project.querySelectorAll('.project-details > li')).flatMap(li => {
+                    let lines = ['    * ' + li.childNodes[0].textContent.trim()];
+                    const subUl = li.querySelector('ul');
+                    if (subUl) {
+                        const subLis = Array.from(subUl.querySelectorAll('li'));
+                        subLis.forEach(subli => {
+                            lines.push('        - ' + subli.textContent.trim());
+                        });
+                    }
+                    return lines;
+                });
+                devProjLines.push(title + ' - ' + description);
+                devProjLines = devProjLines.concat(details);
+            });
+            if (devProjLines.length > 0) {
+                addSection('Proyectos en Desarrollo', devProjLines);
+            }
+            // Información de Contacto
+            const contactInfo = document.querySelector('#additional-info .additional-info-item');
+            const contactDetails = Array.from(contactInfo.querySelectorAll('li')).map(li => li.textContent.replace(/\s+/g, ' ').trim());
+            addSection('Información de Contacto', contactDetails);
+            doc.save('santiago-souto-cv.pdf');
+        }
+
+        // Mostrar/ocultar botón de ir arriba
+        window.addEventListener('scroll', function() {
+            const btn = document.querySelector('.scroll-top-btn');
+            if (window.scrollY > 200) {
+                btn.style.display = 'flex';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </head>
@@ -860,7 +1395,7 @@
                     <div class="skill-item">
                         <h3>Desarrollo de Videojuegos</h3>
                         <ul>
-                            <li>Unity (Avanzado - 2 años)</li>
+                            <li>Unity (Avanzado - 3 años)</li>
                             <li>C# (Avanzado - 2 años)</li>
                             <li>Game Design (Bajo)</li>
                             <li>UI/UX para Videojuegos (Avanzado)</li>
@@ -886,7 +1421,7 @@
                     </div>
                 </div>
 
-                <h2>Soft Skills</h2>
+                <h2>Habilidades Blandas</h2>
                 <div class="skills-grid">
                     <div class="skill-item">
                         <h3>Habilidades Interpersonales</h3>
@@ -901,7 +1436,6 @@
                         <h3>Habilidades de Gestión</h3>
                         <ul>
                             <li>Gestión de tiempo</li>
-                            <li>Liderazgo técnico</li>
                             <li>Planificación y organización</li>
                         </ul>
                     </div>
@@ -943,7 +1477,7 @@
                     </p>
                     <ul>
                         <li>Liderazgo en el desarrollo de UI/UX para The Abyss Within, alcanzando 500+ descargas en Steam</li>
-                        <li>Desarrollo de mecánicas de juego innovadoras y sistemas de UI/UX intuitivos</li>
+                        <li>Desarrollo de mecánicas de juego innovadoras y sistemas de UI/UX</li>
                     </ul>
                 </div>
                 <div class="experience-item">
@@ -1201,5 +1735,22 @@
             </div>
         </section>
     </main>
+
+    <button 
+        onclick="exportToPDFjsPDF()" 
+        class="export-pdf-btn" 
+        title="Exportar CV a PDF"
+        aria-label="Exportar currículum vitae a formato PDF"
+    >
+        <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+    </button>
+
+    <button onclick="scrollToTop()" class="scroll-top-btn" title="Ir arriba" aria-label="Ir arriba" style="display:none;">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true">
+            <path d="M12 4l-8 8h6v8h4v-8h6z"/>
+        </svg>
+    </button>
 </body>
 </html> 
