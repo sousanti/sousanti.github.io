@@ -6,21 +6,24 @@
     <title>Experiencia Profesional | Santiago Souto</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
-        /* Variables y reset */
+        /* Variables y reset - Dark Professional Portfolio */
         :root {
-            --primary-color: #6366f1;
-            --primary-light: #818cf8;
-            --secondary-color: #0f172a;
-            --accent-color: #f43f5e;
-            --text-color: #1e293b;
-            --text-light: #64748b;
-            --background: #ffffff;
-            --background-alt: #f8fafc;
-            --card-bg: #ffffff;
+            --primary-color: #7c4dff;  /* Violeta moderno */
+            --primary-light: #9a67ff;  /* Violeta claro */
+            --secondary-color: #f5f5f7;  /* Blanco con tono suave (títulos) */
+            --secondary-dark: #d4d4d8;  /* Para subtítulos */
+            --accent-color: #00e5ff;  /* Cyan eléctrico */
+            --accent-alt: #ff4081;  /* Rosa neón para contraste */
+            --text-color: #e0e0e0;  /* Gris claro para texto */
+            --text-light: #b0b0b0;  /* Gris medio para texto secundario */
+            --background: #1a1a1a;  /* Fondo oscuro principal */
+            --background-alt: #242424;  /* Fondo alternativo */
+            --card-bg: #2d2d2d;  /* Fondo de tarjetas */
             --spacing-unit: 1rem;
             --max-width: 1200px;
             --border-radius: 12px;
             --transition: all 0.3s ease;
+            --glow-effect: 0 0 8px rgba(124, 77, 255, 0.6);  /* Efecto glow sutil */
         }
 
         * {
@@ -136,7 +139,7 @@
         .about-me {
             text-align: center;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 25px auto;
             background: var(--background-alt);
             padding: calc(var(--spacing-unit) * 3);
             border-radius: var(--border-radius);
@@ -155,14 +158,26 @@
             padding: calc(var(--spacing-unit) * 1.5);
             border-radius: var(--border-radius);
             text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
+            transition: var(--transition), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, box-shadow;
+            /* Estado normal con glow sutil */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 
+                        0 0 6px rgba(124, 77, 255, 0.05);
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px) scale(1.02);
+            /* Efecto de neón con múltiples sombras */
+            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.3),
+                    0 0 15px -3px var(--primary-light),
+                    0 0 25px -5px rgba(0, 229, 255, 0.4);
+            /* Borde luminoso opcional (si usas border) */
+            border-color: var(--primary-color);
+            /* Brillo interno para elementos con fondo */
+            background: radial-gradient(circle at center, 
+                                    rgba(124, 77, 255, 0.1) 0%, 
+                                    transparent 70%);
         }
 
         .experience-item, .education-item, .project-card {
@@ -176,8 +191,18 @@
         }
 
         .experience-item:hover, .education-item:hover, .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+            transform: translateY(-5px) scale(1.02);
+            /* Efecto de neón con múltiples sombras */
+            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.3),
+                    0 0 15px -3px var(--primary-light),
+                    0 0 25px -5px rgba(0, 229, 255, 0.4);
+            /* Borde luminoso opcional (si usas border) */
+            border-color: var(--primary-color);
+            /* Brillo interno para elementos con fondo */
+            background: radial-gradient(circle at center, 
+                                    rgba(124, 77, 255, 0.1) 0%, 
+                                    transparent 70%);
         }
 
         .projects-grid {
@@ -681,7 +706,7 @@
         .language-item,
         .additional-info-item {
             background: var(--background-alt);
-            padding: calc(var(--spacing-unit) * 2);
+            padding: 15px;
             border-radius: var(--border-radius);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
